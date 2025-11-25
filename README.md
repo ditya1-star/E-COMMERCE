@@ -136,4 +136,4 @@ Main.java
 
 The splash screen will load → then login page.
 
-📸 Screensho
+
