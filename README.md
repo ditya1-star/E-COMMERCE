@@ -1,139 +1,125 @@
-A fully functional desktop-based shopping system built using Java Swing and MySQL.
+# 🛒 Java Swing E-Commerce Application (JDBC | MySQL)
 
-📌 Overview
+A fully functional **desktop-based shopping system** built using **Java Swing** and **MySQL**, designed with a **modular architecture** and enhanced using **JDBC Transaction Management** to ensure data consistency during order placement.
 
-This project is a Java Swing based E-Commerce Application that provides a complete shopping workflow including user authentication, product browsing, cart management, checkout, and order processing.
-It is designed following modular and scalable architecture, ideal for academic submission and real-world extension.
+---
 
-🚀 Features
-🔐 User Authentication
+## 📌 Overview
+This project is a **Java Swing–based E-Commerce Application** that provides a complete shopping workflow including:
 
-User Registration (username, email, password)
+- User authentication
+- Product browsing
+- Cart management
+- Checkout & order processing
 
-Secure login using SHA-256 password hashing
+To align with real-world e-commerce standards and academic evaluation criteria, the **order placement process uses JDBC transactions (commit/rollback)** to ensure that **order creation and inventory updates occur atomically**.
 
-Input validation & error handling
+---
 
-🛍️ Product Management
+## 🎯 Key Academic Enhancements
+✔ JDBC Transaction Management  
+✔ Atomic order placement (Order + Stock update)  
+✔ Clear separation of UI and business logic  
+✔ DAO-based database access  
+✔ Industry-standard backend design  
 
-Product listing pulled from MySQL database
+---
 
-Dynamic card-based UI
+## 🚀 Features
 
-Sorting by:
+### 🔐 User Authentication
+- User Registration (username, email, password)
+- Secure login using **SHA-256 password hashing**
+- Input validation & error handling
 
-Price: Low → High
+---
 
-Price: High → Low
+### 🛍️ Product Management
+- Product listing fetched from MySQL database
+- Dynamic card-based UI
+- Sorting options:
+  - Price: Low → High
+  - Price: High → Low
+  - Name: A → Z
+- Stock availability with low-stock indicator
 
-Name: A → Z
+---
 
-Stock status with low-stock indicator
+### 🛒 Cart System
+- Add to cart with selected quantity
+- Buy Now option
+- Cart preview including:
+  - Product name
+  - Quantity
+  - Unit price
+  - Total price
+- Item remove & quantity update support (extendable)
 
-🛒 Cart System
+---
 
-Add to cart with selected quantity
+### 💳 Checkout & Order Processing
+- Billing details form
+- Order summary screen
+- Mock payment simulation
+- Order success confirmation
 
-Buy Now option
+📌 **Important:**  
+The checkout process is handled through a **service layer**, not directly inside UI classes, ensuring proper separation of concerns.
 
-Cart preview with:
+---
 
-Product name
+## 🔐 JDBC Transaction Management (Core Highlight)
 
-Quantity
+### Why Transaction Management?
+In an e-commerce system:
+- An order must be created
+- Inventory must be reduced  
 
-Unit price
+These operations **must succeed or fail together**.
 
-Total price
+---
 
-Item remove & update support (extendable)
+### 🔄 Order Placement Workflow
+1. Disable auto-commit (`setAutoCommit(false)`)
+2. Insert order into `Orders` table
+3. Reduce product stock in `Products` table
+4. If all steps succeed → `commit()`
+5. If any step fails → `rollback()`
 
-💳 Checkout & Payment Simulation
+This prevents:
+- Orders without stock updates
+- Inventory inconsistencies
+- Partial database writes
 
-Billing details section
+---
 
-Order summary
+### 🧠 Transaction Logic Placement
+- ✔ Implemented in **Service / Controller logic**
+- ❌ Not inside Swing UI classes
+- ❌ Not inside DAO classes
 
-Simple mock payment screen
+DAO classes strictly perform SQL operations only.
 
-Order success notification
+---
 
-🎨 UI/UX
+## 🎨 UI / UX
+- Modern Java Swing UI
+- Splash screen with loader
+- Light / Dark theme manager
+- Toast-style notifications
+- Clean and responsive layouts
 
-Modern Java Swing UI
+---
 
-Splash screen with loader
-
-Light/Dark theme manager
-
-Toast notifications
-
-🗄️ Database Integration
-
+## 🗄️ Database Integration
 MySQL database stores:
+- Users
+- Products
+- Orders
+- OrderItems
 
-Users
+Database access is handled via **optimized DAO classes**, ensuring maintainability and scalability.
 
-Products
+---
 
-Orders
-
-Order Items
-
-Optimized DAO structure for clean database operations.
-
-🏗️ Architecture
-src/
- ├── ecommerce/
- │    ├── App.java
- │    └── Main.java
- ├── ui/
- │    ├── LoginFrame.java
- │    ├── RegisterFrame.java
- │    ├── MainFrame.java
- │    ├── ProductsPanel.java
- │    ├── CheckoutFrame.java
- │    └── SplashScreen.java
- ├── dao/
- │    ├── UserDAO.java
- │    ├── ProductDAO.java
- │    └── OrderDAO.java
- ├── models/
- │    ├── User.java
- │    ├── Product.java
- │    └── Order.java
- └── utils/
-      ├── Validator.java
-      ├── PasswordHasher.java
-      ├── CartManager.java
-      ├── ThemeManager.java
-      └── Toast.java
-
-🗃️ Database Setup
-
-Create a MySQL database:
-
-CREATE DATABASE ecommerce_db;
-USE ecommerce_db;
-
-
-Import the SQL tables (Users, Products, Orders, OrderItems).
-
-Update your DB credentials in App.java or DBConnection.java (depending on your version).
-
-▶️ How to Run
-
-Install JDK 17+
-
-Add MySQL Connector/J to project libraries
-
-Connect MySQL Database
-
-Run:
-
-Main.java
-
-
-The splash screen will load → then login page.
-
-
+## 🏗️ Project Structure
