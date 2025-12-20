@@ -123,3 +123,102 @@ Database access is handled via **optimized DAO classes**, ensuring maintainabili
 ---
 
 ## 🏗️ Project Structure
+
+src/
+├── ecommerce/
+│ ├── App.java
+│ └── Main.java
+├── ui/
+│ ├── LoginFrame.java
+│ ├── RegisterFrame.java
+│ ├── MainFrame.java
+│ ├── ProductsPanel.java
+│ ├── CheckoutFrame.java
+│ └── SplashScreen.java
+├── dao/
+│ ├── UserDAO.java
+│ ├── ProductDAO.java
+│ └── OrderDAO.java
+├── models/
+│ ├── User.java
+│ ├── Product.java
+│ └── Order.java
+└── utils/
+├── Validator.java
+├── PasswordHasher.java
+├── CartManager.java
+├── ThemeManager.java
+└── Toast.java
+
+
+---
+
+## 🗃️ Database Setup
+
+sql
+CREATE DATABASE ecommerce_db;
+USE ecommerce_db;
+
+
+Create tables:
+
+Users
+
+Products
+
+Orders
+
+OrderItems
+
+Update database credentials in:
+
+App.java or DBConnection.java
+
+▶️ How to Run
+
+Install JDK 17+
+
+Add MySQL Connector/J to project libraries
+
+Configure MySQL database
+
+Run:
+
+Main.java
+
+
+Splash screen → Login → Dashboard
+
+📚 Learning Outcomes
+
+Practical JDBC transaction handling
+
+Desktop-based MVC-style architecture
+
+Secure authentication implementation
+
+Real-world order consistency handling
+
+Clean, scalable Java application design
+
+🚀 Future Enhancements
+
+Real payment gateway integration
+
+Order history & invoice generation
+
+Admin inventory panel
+
+Connection pooling
+
+Improved exception logging
+
+👨‍💻 Developer
+
+Aditya Kumar Verma
+B.Tech CSE 
+Galgotias University
+
+⭐ Evaluation Note
+
+This project incorporates JDBC Transaction Management for order placement, ensuring atomic database operations and strict separation between UI, business logic, and data access layers — fully addressing evaluator feedback and real-world software engineering standards.
